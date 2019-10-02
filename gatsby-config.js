@@ -1,11 +1,22 @@
+const config = require("./config")
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Tailwind`,
-    description: `Gatsby starter styled with Tailwind`,
-    author: `@taylorbryant`
+    title: `Gatsby Starter for WPgraphQL + Tailwind`,
+    description: `Gatsby starter styled with Tailwind using Wordpress as a data source.`,
+    author: `Scott Cardoza`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: 'gatsby-source-graphql',
+      options: {
+        typeName: 'WPGraphQL',
+        fieldName: 'wpgraphql',
+        url: `${config.wordPressUrl}/graphql`,
+        refetchInterval: 60
+      }
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
